@@ -1,5 +1,5 @@
 import React from 'react';
-import { Menu, Search, Bell, LogOut, User } from 'lucide-react';
+import { Menu, Search, Bell, LogOut, User, Sun, Moon } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
 
@@ -16,7 +16,7 @@ const routeTitles = {
 const Navbar = ({ onToggleSidebar }) => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { user, logout, globalSearch, setGlobalSearch } = useApp();
+  const { user, logout, globalSearch, setGlobalSearch, theme, toggleTheme } = useApp();
 
   // Determine title dynamically
   const getTitle = () => {
@@ -60,6 +60,21 @@ const Navbar = ({ onToggleSidebar }) => {
             }}
           />
         </div>
+
+        {/* Theme Toggle Button */}
+        <button
+          type="button"
+          className="icon-btn theme-toggle-btn"
+          onClick={toggleTheme}
+          title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+          aria-label={`Switch to ${theme === 'dark' ? 'Light' : 'Dark'} Mode`}
+        >
+          {theme === 'dark' ? (
+            <Sun size={19} className="theme-icon sun-icon" />
+          ) : (
+            <Moon size={19} className="theme-icon moon-icon" />
+          )}
+        </button>
 
         {/* Notification Icon */}
         <button className="icon-btn" title="Notifications">

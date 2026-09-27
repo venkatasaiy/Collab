@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Library, Eye, EyeOff, Lock, User, ArrowRight } from 'lucide-react';
+import { Library, Eye, EyeOff, Lock, User, ArrowRight, Sun, Moon } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 
 const Login = () => {
-  const { login, isAuthenticated } = useApp();
+  const { login, isAuthenticated, theme, toggleTheme } = useApp();
   const navigate = useNavigate();
 
   const [username, setUsername] = useState('');
@@ -44,6 +44,23 @@ const Login = () => {
 
   return (
     <div className="login-container">
+      {/* Theme Toggle Button */}
+      <div className="login-theme-toggle">
+        <button
+          type="button"
+          className="icon-btn theme-toggle-btn"
+          onClick={toggleTheme}
+          title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+          aria-label={`Switch to ${theme === 'dark' ? 'Light' : 'Dark'} Mode`}
+        >
+          {theme === 'dark' ? (
+            <Sun size={20} className="sun-icon" />
+          ) : (
+            <Moon size={20} className="moon-icon" />
+          )}
+        </button>
+      </div>
+
       <div className="login-card">
         <div className="login-header">
           <div className="login-brand-icon">
