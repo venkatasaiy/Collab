@@ -1,6 +1,6 @@
 import React from 'react';
 
-const StatCard = ({ title, value, icon: Icon, color = '#4f46e5', bgColor = '#eef2ff' }) => {
+const StatCard = ({ title, value, icon: Icon, color = 'var(--primary)', bgColor = 'var(--primary-light)' }) => {
   return (
     <div className="card stat-card card-hover">
       <div className="stat-info">

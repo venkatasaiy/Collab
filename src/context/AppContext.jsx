@@ -32,6 +32,19 @@ export const AppProvider = ({ children }) => {
     return saved ? JSON.parse(saved) : initialIssueRecords;
   });
 
+  // Theme State ('light' | 'dark')
+  const [theme, setTheme] = useState(() => {
+    try {
+      const savedTheme = localStorage.getItem('bms_theme');
+      if (savedTheme === 'dark' || savedTheme === 'light') return savedTheme;
+      return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        ? 'dark'
+        : 'light';
+    } catch (e) {
+      return 'light';
+    }
+  });
+
   // Global Toast Notification State
   const [toast, setToast] = useState({
     show: false,
@@ -41,6 +54,18 @@ export const AppProvider = ({ children }) => {
 
   // Global Search term in Navbar
   const [globalSearch, setGlobalSearch] = useState('');
+
+  // Apply & Persist Theme
+  useEffect(() => {
+    try {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('bms_theme', theme);
+    } catch (e) {}
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+  };
 
   // Persist Data to LocalStorage
   useEffect(() => {
@@ -358,6 +383,9 @@ export const AppProvider = ({ children }) => {
     globalSearch,
     setGlobalSearch,
     resetToMockData,
+    theme,
+    setTheme,
+    toggleTheme,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

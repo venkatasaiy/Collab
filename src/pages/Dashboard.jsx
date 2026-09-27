@@ -69,29 +69,29 @@ const Dashboard = () => {
           title="Total Books"
           value={totalBooks}
           icon={BookOpen}
-          color="#4f46e5"
-          bgColor="#eef2ff"
+          color="var(--primary)"
+          bgColor="var(--primary-light)"
         />
         <StatCard
           title="Available Copies"
           value={availableBooks}
           icon={CheckCircle2}
-          color="#10b981"
-          bgColor="#ecfdf5"
+          color="var(--success)"
+          bgColor="var(--success-bg)"
         />
         <StatCard
           title="Issued Books"
           value={activeIssuedBooks}
           icon={BookmarkCheck}
-          color="#f59e0b"
-          bgColor="#fffbe6"
+          color="var(--warning)"
+          bgColor="var(--warning-bg)"
         />
         <StatCard
           title="Total Borrowers"
           value={totalBorrowers}
           icon={Users}
-          color="#3b82f6"
-          bgColor="#eff6ff"
+          color="var(--info)"
+          bgColor="var(--info-bg)"
         />
       </div>
 

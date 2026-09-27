@@ -8,12 +8,14 @@ import {
   BookmarkCheck, 
   LogOut, 
   Library,
+  Sun,
+  Moon,
   X
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 
 const Sidebar = ({ isOpen, onCloseMobile }) => {
-  const { logout } = useApp();
+  const { logout, theme, toggleTheme } = useApp();
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -67,6 +69,19 @@ const Sidebar = ({ isOpen, onCloseMobile }) => {
         </nav>
 
         <div className="sidebar-footer">
+          <button 
+            type="button" 
+            className="sidebar-theme-toggle" 
+            onClick={toggleTheme}
+            title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+          >
+            {theme === 'dark' ? (
+              <Sun size={18} className="sun-icon" />
+            ) : (
+              <Moon size={18} className="moon-icon" />
+            )}
+            <span>{theme === 'dark' ? 'Light Mode' : 'Dark Mode'}</span>
+          </button>
           <button className="logout-btn" onClick={handleLogout}>
             <LogOut size={20} />
             <span>Logout</span>
